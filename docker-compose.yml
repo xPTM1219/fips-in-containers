@@ -1,0 +1,25 @@
+# Based on public.ecr.aws/docker/library/rockylinux:8.9
+
+#docker run --mount type=bind,src=/usr/share/crypto-policies/back-ends/FIPS,dst=/etc/crypto-policies/back-ends -it rocky8-fips:java17 bash
+
+services:
+  rocky8-fips:
+    container_name: rocky8-fips
+    image: rocky8-fips:java17
+    restart: never
+    #ports:
+    #  - "127.0.0.1:8080:8080"
+    volumes:
+      - type: bind
+        source: /usr/share/crypto-policies/back-ends/FIPS
+        target: /etc/crypto-policies/back-ends
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+#volumes:
+#  searxng-data:
+
+
