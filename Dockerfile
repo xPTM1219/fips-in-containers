@@ -22,9 +22,11 @@ RUN rm -f /etc/yum.repos.d/bintray-rpm.repo || true \
 RUN mkdir /app \
     && echo ":colorscheme evening" > /root/.vimrc \
     && echo ":syntax on" >> /root/.vimrc \
-    && echo "source /opt/scala3-3.3.7/bin/" >> /root/.bashrc
+    && echo "export PATH=$PATH:'/opt/scala3-3.3.7/bin'" >> /root/.bashrc
 
 COPY *.java /app/
 
 ENV OPENSSL_FIPS=1
+
+ENTRYPOINT ["/bin/bash"]
 
